@@ -1,8 +1,15 @@
 <h1 align="center">FRT · Find and Run Test</h1>
 
+[![Packagist](https://img.shields.io/packagist/v/tomkyle/find-run-test.svg?style=flat)](https://packagist.org/packages/tomkyle/find-run-test )
+[![PHP version](https://img.shields.io/packagist/php-v/tomkyle/find-run-test.svg)](https://packagist.org/packages/tomkyle/find-run-test )
+[![PHP Composer](https://github.com/tomkyle/frt/actions/workflows/php.yml/badge.svg)](https://github.com/tomkyle/frt/actions/workflows/php.yml) 
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 
+## Installation
 
-
+```bash
+$ composer require tomkyle/find-run-test
+```
 
 ## Development
 
