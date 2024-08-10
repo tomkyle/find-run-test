@@ -1,0 +1,19 @@
+#!/usr/bin/env php
+<?php
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\SingleCommandApplication;
+use tomkyle\FindRunTest\SymfonyConsoleWrapper;
+use tomkyle\FindRunTest\PhpUnitRunner;
+
+$root_path = dirname(__DIR__);
+require $root_path . '/vendor/autoload.php';
+
+$tests_dir = $root_path . '/tests';
+
+(new SingleCommandApplication())
+->addArgument('file', InputArgument::REQUIRED, 'The PHP class file to test')
+->addOption('config', 'c', InputOption::VALUE_REQUIRED, 'The PhpUnit configuration file to use')
+->setCode( new SymfonyConsoleWrapper(new PhpUnitRunner(tests: $tests_dir)))
+->run();
+
