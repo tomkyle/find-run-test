@@ -39,9 +39,9 @@ class PhpUnitRunnerTest extends TestCase
 
     public function testCreation(): void
     {
-        $sut = new PhpUnitRunner();
-        $this->assertInstanceOf(TestRunnerInterface::class, $sut);
-        $this->assertInstanceOf(ConfigurableTestRunnerInterface::class, $sut);
+        $phpUnitRunner = new PhpUnitRunner();
+        $this->assertInstanceOf(TestRunnerInterface::class, $phpUnitRunner);
+        $this->assertInstanceOf(ConfigurableTestRunnerInterface::class, $phpUnitRunner);
     }
 
     /**
@@ -49,11 +49,11 @@ class PhpUnitRunnerTest extends TestCase
      */
     public function testConstructorInitializesProperties(): void
     {
-        $sut = new PhpUnitRunner('custom_config.xml', '/path/to/tests', '/custom/path/phpunit');
+        $phpUnitRunner = new PhpUnitRunner('custom_config.xml', '/path/to/tests', '/custom/path/phpunit');
 
-        $this->assertEquals('custom_config.xml', $sut->getConfig());
-        $this->assertSame('/custom/path/phpunit', $sut->getCommand());
-        $this->assertSame('/path/to/tests', $sut->getTestsDirectory());
+        $this->assertEquals('custom_config.xml', $phpUnitRunner->getConfig());
+        $this->assertSame('/custom/path/phpunit', $phpUnitRunner->getCommand());
+        $this->assertSame('/path/to/tests', $phpUnitRunner->getTestsDirectory());
     }
 
 
@@ -62,9 +62,9 @@ class PhpUnitRunnerTest extends TestCase
      */
     public function testSuccessExitEvenWhenNoTestFilesFound(): void
     {
-        $sut = new PhpUnitRunner(tests: $this->temporaryDirectory->path());
+        $phpUnitRunner = new PhpUnitRunner(tests: $this->temporaryDirectory->path());
 
-        $this->assertEquals(0, $sut->__invoke('sample.php'));
+        $this->assertEquals(0, $phpUnitRunner->__invoke('sample.php'));
     }
 
 
@@ -73,20 +73,20 @@ class PhpUnitRunnerTest extends TestCase
      */
     public function testExceptionOnProcessFailureWhenInvoked(): void
     {
-        $sut = new PhpUnitRunner(tests: $this->temporaryDirectory->path());
+        $phpUnitRunner = new PhpUnitRunner(tests: $this->temporaryDirectory->path());
 
         $this->expectException(\RuntimeException::class);
         $this->expectException(ProcessFailedException::class);
 
         // This should cause the Process to fail
-        $sut->setCommand("does/not/exist");
+        $phpUnitRunner->setCommand("does/not/exist");
 
         // Mock a changed source file and the matching test file
         $src_mock = tempnam($this->temporaryDirectory->path(), 'file');
         $test_mock = $src_mock.'Test.php';
         copy($src_mock, $test_mock);
 
-        $sut->__invoke($src_mock);
+        $phpUnitRunner->__invoke($src_mock);
     }
 
 
@@ -95,31 +95,31 @@ class PhpUnitRunnerTest extends TestCase
      */
     public function testExceptionOnProcessFailureWithRunTestMethod(): void
     {
-        $sut = new PhpUnitRunner(tests: $this->temporaryDirectory->path());
+        $phpUnitRunner = new PhpUnitRunner(tests: $this->temporaryDirectory->path());
 
         $this->expectException(\RuntimeException::class);
         $this->expectException(ProcessFailedException::class);
 
         // This should cause the Process to fail
-        $sut->setCommand("does/not/exist");
+        $phpUnitRunner->setCommand("does/not/exist");
 
         // Mock a changed source file and the matching test file
         $src_mock = tempnam($this->temporaryDirectory->path(), 'file');
         $test_mock = $src_mock.'Test.php';
         copy($src_mock, $test_mock);
 
-        $sut->runTest($test_mock);
+        $phpUnitRunner->runTest($test_mock);
     }
 
 
     public function testUseColorsInterceptor() : void
     {
-        $sut = new PhpUnitRunner();
-        $sut->useColors(true);
-        $this->assertEquals(true, $sut->useColors());
+        $phpUnitRunner = new PhpUnitRunner();
+        $phpUnitRunner->useColors(true);
+        $this->assertEquals(true, $phpUnitRunner->useColors());
 
-        $sut->useColors(false);
-        $this->assertEquals(false, $sut->useColors());
+        $phpUnitRunner->useColors(false);
+        $this->assertEquals(false, $phpUnitRunner->useColors());
     }
 
 }
