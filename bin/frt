@@ -7,7 +7,8 @@ use tomkyle\FindRunTest\SymfonyConsoleWrapper;
 use tomkyle\FindRunTest\PhpUnitRunner;
 
 $root_path = dirname(__DIR__);
-require $root_path . '/vendor/autoload.php';
+
+include $_composer_autoload_path ?? $root_path . '/vendor/autoload.php';
 
 $tests_dir = $root_path . '/tests';
 
