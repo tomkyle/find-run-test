@@ -1,14 +1,18 @@
 <?php
 
+/**
+ * This file is part of tomkyle/find-run-test
+ */
+
 namespace tomkyle\FindRunTest;
 
 interface ConfigurableTestRunnerInterface extends TestRunnerInterface
 {
-    public function setCommand(string $cmd) : self;
+    public function setCommand(string $cmd): self;
 
-    public function setConfig(string $config) : self;
+    public function setConfig(string $config): self;
 
-    public function setTestsDirectory(string $dir) : self;
+    public function setTestsDirectory(string $dir): self;
 
-    public function useColors(bool $colors = null) : self|bool;
+    public function useColors(bool $colors = null): self|bool;
 }
