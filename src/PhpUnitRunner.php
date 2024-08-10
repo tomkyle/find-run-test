@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * This file is part of tomkyle/find-run-test
+ */
+
 namespace tomkyle\FindRunTest;
 
 use Symfony\Component\Finder\Finder;
@@ -8,7 +12,6 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class PhpUnitRunner implements ConfigurableTestRunnerInterface
 {
-
     /**
      * @var string
      */
@@ -48,7 +51,8 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
      * @throws ProcessFailedException on Process error.
      */
     #[\Override]
-    public function __invoke(string $file) : int {
+    public function __invoke(string $file): int
+    {
         // Construct the expected name of the test file
         $file_basename = pathinfo($file, PATHINFO_FILENAME);
         $test_file = $file_basename . 'Test';
@@ -86,14 +90,15 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
      * @param  string $unit_test Example: `MyClassTest.php`
      */
     #[\Override]
-    public function runTest(string $unit_test) : self {
+    public function runTest(string $unit_test): self
+    {
 
         $process_args = array_filter([
             $this->phpunit_cmd,
             $this->phpunit_config ? '--configuration' : null,
             $this->phpunit_config ?: null,
             '--filter',
-            $unit_test
+            $unit_test,
         ]);
 
         $process = (new Process($process_args))
@@ -114,7 +119,7 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
      * Sets the tests directory
      */
     #[\Override]
-    public function setTestsDirectory(string $dir) : self
+    public function setTestsDirectory(string $dir): self
     {
         $this->tests_directory = $dir;
         return $this;
@@ -123,7 +128,7 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
     /**
      * Returns the tests directory
      */
-    public function getTestsDirectory() : string
+    public function getTestsDirectory(): string
     {
         return $this->tests_directory;
     }
@@ -131,7 +136,7 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
     /**
      * Returns the PhpUnit executable.
      */
-    public function getCommand() : string
+    public function getCommand(): string
     {
         return $this->phpunit_cmd;
     }
@@ -141,7 +146,7 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
      * @param string $cmd Path to PhpUnit executable
      */
     #[\Override]
-    public function setCommand(string $cmd) : self
+    public function setCommand(string $cmd): self
     {
         $this->phpunit_cmd = $cmd;
         return $this;
@@ -152,7 +157,7 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
     /**
      * Returns the PhpUnit config file.
      */
-    public function getConfig() : string
+    public function getConfig(): string
     {
         return $this->phpunit_config;
     }
@@ -162,7 +167,7 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
      * @param string $config PhpUnit configuration file
      */
     #[\Override]
-    public function setConfig(string $config) : self
+    public function setConfig(string $config): self
     {
         $this->phpunit_config = $config;
         return $this;
@@ -173,7 +178,7 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
      * @param  bool|boolean|null $colors Flag
      */
     #[\Override]
-    public function useColors(bool $colors = null) : self|bool
+    public function useColors(bool $colors = null): self|bool
     {
         if (is_null($colors)) {
             return $this->use_colors;

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * This file is part of tomkyle/find-run-test
+ */
+
 namespace tests\Unit;
 
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -85,7 +89,7 @@ class PhpUnitRunnerTest extends TestCase
 
         // Mock a changed source file and the matching test file
         $src_mock = tempnam($this->temporaryDirectory->path(), 'file');
-        $test_mock = $src_mock.'Test.php';
+        $test_mock = $src_mock . 'Test.php';
         copy($src_mock, $test_mock);
 
         $phpUnitRunner->__invoke($src_mock);
@@ -108,14 +112,14 @@ class PhpUnitRunnerTest extends TestCase
 
         // Mock a changed source file and the matching test file
         $src_mock = tempnam($this->temporaryDirectory->path(), 'file');
-        $test_mock = $src_mock.'Test.php';
+        $test_mock = $src_mock . 'Test.php';
         copy($src_mock, $test_mock);
 
         $phpUnitRunner->runTest($test_mock);
     }
 
 
-    public function testUseColorsInterceptor() : void
+    public function testUseColorsInterceptor(): void
     {
         $phpUnitRunner = new PhpUnitRunner();
         $phpUnitRunner->useColors(true);
@@ -126,4 +130,3 @@ class PhpUnitRunnerTest extends TestCase
     }
 
 }
-

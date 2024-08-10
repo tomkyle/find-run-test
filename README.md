@@ -11,6 +11,20 @@
 $ composer require tomkyle/find-run-test
 ```
 
+## Usage
+
+Pass the PHP file of which the source code has changed to the `frt` executable. 
+
+```bash
+$ vendor/bin/frt <PHP_FILE>
+```
+
+FRT will look for any Phpunit test file which suits the class name of the changed file. For example:
+
+1. You update file `src/MyClass.php`
+2. FRT will look for any PhpUnit file inside the project’s tests directory.
+3. If there is a test file `MyClassTest.php`, FRT will execute it using PhpUnit’s `--filter` option.
+
 ## Development
 
 ### Clone repo and install requirements
