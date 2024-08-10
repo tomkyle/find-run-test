@@ -6,9 +6,20 @@ use Symfony\Component\Console\SingleCommandApplication;
 use tomkyle\FindRunTest\SymfonyConsoleWrapper;
 use tomkyle\FindRunTest\PhpUnitRunner;
 
-$root_path = dirname(__DIR__);
-
-include $_composer_autoload_path ?? $root_path . '/vendor/autoload.php';
+if (isset($_composer_autoload_path)) {
+	require $_composer_autoload_path;
+	$root_path = dirname(realpath($_composer_autoload_path), 2);
+} else {
+	$possible_autoloaders = array_map(static fn($rp) => $rp  . '/vendor/autoload.php', [ dirname(__DIR__, 4), dirname(__DIR__,2), dirname(__DIR__)]);
+	$existing_autoloaders = array_filter($possible_autoloaders, static fn($rp) => is_file($rp));
+	if (empty($existing_autoloaders)) {
+		fwrite(STDERR, "Could not locate autoloader.\n");
+		exit(1);
+	}
+	$autoload = current($existing_autoloaders);
+	require $autoload;
+	$root_path = dirname($autoload, 2);
+}
 
 $tests_dir = $root_path . '/tests';
 
