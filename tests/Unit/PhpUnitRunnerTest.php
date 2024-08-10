@@ -5,6 +5,7 @@ namespace tests\Unit;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 use tomkyle\FindRunTest\PhpUnitRunner;
 use tomkyle\FindRunTest\TestRunnerInterface;
 use tomkyle\FindRunTest\ConfigurableTestRunnerInterface;
@@ -74,6 +75,7 @@ class PhpUnitRunnerTest extends TestCase
     public function testExceptionOnProcessFailureWhenInvoked(): void
     {
         $phpUnitRunner = new PhpUnitRunner(tests: $this->temporaryDirectory->path());
+        $phpUnitRunner->useColors(Process::isTtySupported());
 
         $this->expectException(\RuntimeException::class);
         $this->expectException(ProcessFailedException::class);
@@ -96,6 +98,7 @@ class PhpUnitRunnerTest extends TestCase
     public function testExceptionOnProcessFailureWithRunTestMethod(): void
     {
         $phpUnitRunner = new PhpUnitRunner(tests: $this->temporaryDirectory->path());
+        $phpUnitRunner->useColors(Process::isTtySupported());
 
         $this->expectException(\RuntimeException::class);
         $this->expectException(ProcessFailedException::class);
