@@ -10,8 +10,9 @@ if (isset($_composer_autoload_path)) {
 	$autoload = realpath($_composer_autoload_path);
 } else {
 	$possible_autoloaders = array_map(static fn($path) => $path  . '/vendor/autoload.php', [
+		dirname(__DIR__),
 		dirname(__DIR__, 2),
-		dirname(__DIR__, 4)
+		dirname(__DIR__, 4),
 	]);
 	$existing_autoloaders = array_filter($possible_autoloaders, static fn($path) => is_file($path));
 	$autoload = current($existing_autoloaders);
