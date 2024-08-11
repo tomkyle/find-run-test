@@ -9,8 +9,8 @@
   "scripts": {
 
     "watch": "npm-run-all -p watch:*",
-    "watch:src": "chokidar \"src/**/*.php\"          -c \"bin/frt --config phpunit.npm.xml {path} && npm run phpstan {path} && npm run rector {path}\"",
-    "watch:tests": "chokidar \"tests/**/*.php\"      -c \"npm run phpunit:npm {path}\"",
+    "watch:src": "chokidar \"src/**/*.php\"          -c \"bin/frt {path} && npm run phpstan {path} && npm run rector {path}\"",
+    "watch:tests": "chokidar \"tests/**/*.php\"      -c \"npm run phpunit:short {path}\"",
 
     "phpstan": "./vendor/bin/phpstan --no-progress analyse",
 
@@ -21,8 +21,8 @@
     "rector:apply": "./vendor/bin/rector process",
 
     "phpunit": "./vendor/bin/phpunit",
+    "phpunit:short": "npm run phpunit -- --no-coverage",
     "phpunit:unit": "npm run phpunit -- --testsuite unit",
-    "phpunit:integration": "npm run phpunit -- --testsuite integration",
-    "phpunit:npm": "npm run phpunit -- --configuration phpunit.npm.xml"
+    "phpunit:integration": "npm run phpunit -- --testsuite integration"
   }
 }
