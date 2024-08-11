@@ -17,16 +17,18 @@ class SymfonyConsoleWrapper
 
     public function __invoke(InputInterface $input, OutputInterface $output): int
     {
+        if ($this->testRunner instanceof ConfigurableTestRunnerInterface) {
+            $config = $input->getOption('config');
+            if ($config) {
+                $this->testRunner->setConfig($config);
+            }
 
-        $config = $input->getOption('config');
-        if ($config) {
-            $this->testRunner->setConfig($config);
+            $colors = Process::isTtySupported();
+            $this->testRunner->useColors($colors);
         }
 
-        $colors = Process::isTtySupported();
         $file = $input->getArgument('file');
-
-        return ($this->testRunner->useColors($colors))($file);
+        return ($this->testRunner)($file);
     }
 
 }

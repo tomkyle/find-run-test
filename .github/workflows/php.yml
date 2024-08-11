@@ -48,5 +48,5 @@ jobs:
       - name: Run PHPUnit
         run: vendor/bin/phpunit tests --no-coverage
 
-#      - name: Run phpstan
-#        run: vendor/bin/phpstan analyse --level
+      - name: Run phpstan
+        run: vendor/bin/phpstan analyse

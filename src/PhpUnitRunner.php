@@ -97,6 +97,8 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
             $this->phpunit_cmd,
             $this->phpunit_config ? '--configuration' : null,
             $this->phpunit_config ?: null,
+            // '--no-logging',
+            '--no-coverage',
             '--filter',
             $unit_test,
         ]);
