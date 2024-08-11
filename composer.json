@@ -1,6 +1,8 @@
 {
     "name": "tomkyle/find-run-test",
     "type": "library",
+    "description": "Find and run the PHPUnit test for a single changed PHP class file, most useful when watching the filesystem",
+    "keywords": ["phpunit", "unit testing"],
     "bin": ["bin/frt"],
     "require": {
     		"php": "^8.2",
