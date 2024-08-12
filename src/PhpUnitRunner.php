@@ -46,8 +46,8 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
 
 
     /**
-     * @param  string $file PHP source file
-     * @return int          Exit code, usually `0`.
+     * @inheritDoc
+     *
      * @throws ProcessFailedException on Process error.
      */
     #[\Override]
@@ -86,6 +86,8 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
 
 
     /**
+     * @inheritDoc
+     *
      * Executes PhpUnit with the given Unit test file.
      * @param  string $unit_test Example: `MyClassTest.php`
      */
