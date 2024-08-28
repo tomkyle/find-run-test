@@ -46,8 +46,8 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
 
 
     /**
-     * @param  string $file PHP source file
-     * @return int          Exit code, usually `0`.
+     * @inheritDoc
+     *
      * @throws ProcessFailedException on Process error.
      */
     #[\Override]
@@ -65,7 +65,7 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
 
         // If no test file is found, inform the user.
         if (iterator_count($finder) < 1) {
-            $msg = sprintf("Has no Unit test: %s", $file);
+            $msg = sprintf("No test available: %s", $file);
 
             echo $this->use_colors
             ? "\033[33m" . $msg . "\033[0m" . PHP_EOL
@@ -86,6 +86,8 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
 
 
     /**
+     * @inheritDoc
+     *
      * Executes PhpUnit with the given Unit test file.
      * @param  string $unit_test Example: `MyClassTest.php`
      */

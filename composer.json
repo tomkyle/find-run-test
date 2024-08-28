@@ -11,7 +11,7 @@
     },
     "require-dev": {
         "phpstan/phpstan": "^1.11",
-        "friendsofphp/php-cs-fixer": "^3.60",
+        "friendsofphp/php-cs-fixer": "^3.63",
         "rector/rector": "^1.2",
         "phpunit/phpunit": "^11.2",
         "spatie/temporary-directory": "^2.2"
