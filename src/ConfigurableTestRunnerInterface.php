@@ -14,5 +14,5 @@ interface ConfigurableTestRunnerInterface extends TestRunnerInterface
 
     public function setTestsDirectory(string $dir): self;
 
-    public function useColors(bool $colors = null): self|bool;
+    public function useColors(?bool $colors = null): self|bool;
 }

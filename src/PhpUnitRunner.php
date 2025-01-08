@@ -9,7 +9,6 @@ namespace tomkyle\FindRunTest;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
-
 class PhpUnitRunner implements ConfigurableTestRunnerInterface
 {
     /**
@@ -37,7 +36,7 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
      * @param string|null  $tests    Optional: Tests directory, default: current work dir
      * @param string|null  $command  Optional: Path to PhpUnit executable
      */
-    public function __construct(string $config = null, string $tests = null, string $command = null)
+    public function __construct(?string $config = null, ?string $tests = null, ?string $command = null)
     {
         $this->phpunit_config = $config;
         $this->setTestsDirectory(($tests ?: getcwd()) ?: '.');
@@ -182,7 +181,7 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
      * @param  bool|boolean|null $colors Flag
      */
     #[\Override]
-    public function useColors(bool $colors = null): self|bool
+    public function useColors(?bool $colors = null): self|bool
     {
         if (is_null($colors)) {
             return $this->use_colors;
