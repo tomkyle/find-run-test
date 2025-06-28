@@ -1,9 +1,9 @@
 <h1 align="center">FRT · Find and Run Test</h1>
 
-[![Packagist](https://img.shields.io/packagist/v/tomkyle/find-run-test.svg?style=flat)](https://packagist.org/packages/tomkyle/find-run-test )
-[![PHP version](https://img.shields.io/packagist/php-v/tomkyle/find-run-test.svg)](https://packagist.org/packages/tomkyle/find-run-test )
-[![PHP Composer](https://github.com/tomkyle/frt/actions/workflows/php.yml/badge.svg)](https://github.com/tomkyle/frt/actions/workflows/php.yml) 
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
+[![Composer Version](https://img.shields.io/packagist/v/tomkyle/find-run-test)](https://packagist.org/packages/tomkyle/find-run-test )
+[![PHP version](https://img.shields.io/packagist/php-v/tomkyle/find-run-test)](https://packagist.org/packages/tomkyle/find-run-test )
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/tomkyle/find-run-test/php.yml)](https://github.com/tomkyle/find-run-test/actions/workflows/php.yml)
+[![Packagist License](https://img.shields.io/packagist/l/tomkyle/find-run-test)](LICENSE.txt)
 
 ## About
 

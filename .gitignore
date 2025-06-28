@@ -44,6 +44,7 @@ Icon
 vendor
 node_modules
 phpunit.xml
+.phpunit.cache
 phpstan.neon
 .php-cs-fixer.php
 .php-cs-fixer.cache

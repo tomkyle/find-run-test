@@ -2,13 +2,13 @@
 
 
 parameters:
-	level: 7
+	level: 9
 
 	paths:
 		- src
+		- bin
+		- tests
 
-	excludePaths:
-		- _schrott
 
 	ignoreErrors:
 		# -
