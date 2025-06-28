@@ -9,14 +9,14 @@
 
 **FRT automatically executes the associated PHPUnit test for a changed source code file.**
 
-It takes a different approach to [spatie/phpunit-watcher](https://packagist.org/packages/spatie/phpunit-watcher), a mature und well-developed testing tool. Its goal is to automatically re-execute the entire PHPUnit test suite when source code files are changed. The `phpunit-watcher watch` command starts an own watch process which executes the *full* test suite once a file has changed. However, the executed tests can, however, be restricted to *specific* tests using the  `--filter` option. This means that regardless of which file is changed or saved, only the specified unit tests are executed.
+**Comparison with spatie/phpunit-watcher:** [spatie/phpunit-watcher](https://packagist.org/packages/spatie/phpunit-watcher) re-executes the *entire* PHPUnit test suite once a source code file has changed. The executed tests can be restricted to *specific* tests using the  `--filter` option. This means that regardless of which file is changed or saved, only the specified unit tests are executed.
 
 ```bash
 $ vendor/bin/phpunit-watcher watch
 $ vendor/bin/phpunit-watcher watch --filter=certain_test
 ```
 
-Compared to this package, *tomkyle/find-run-test* takes a different approach: After saving a file, only the PHPUnit test associated with the modified file is executed. 
+**tomkyle/find-run-test takes a different approach:** After saving a file, only the PHPUnit test associated with the modified file is executed. 
 
 | COMPARISON                             | tomkyle/frt                        | spatie/phpunit-watcher         |
 | -------------------------------------- | ---------------------------------- | ------------------------------ |
@@ -32,7 +32,7 @@ Compared to this package, *tomkyle/find-run-test* takes a different approach: Af
 Install FRT with Composer:
 
 ```bash
-$ composer require tomkyle/find-run-test
+$ composer require --dev tomkyle/find-run-test
 ```
 
 ## How it works
@@ -44,11 +44,14 @@ The `vendor/bin/frt` executable expects the PHP file of which the source code ha
    $ vendor/bin/frt src/MyClass.php
    ```
 
-2. FRT will look for any PHPUnit file inside the project’s `tests` directory.
+2. FRT will look for matching PHPUnit tests inside the project’s `tests` directory.
 
-3. If there is a test file `MyClassTest.php`, FRT will execute it using PHPUnit’s `--filter` option.
+3. If there is a test file `MyClassTest.php`, FRT will hand it over to PHPUnit, like so:
+   ```bash
+   $ vendor/bin/phpunit --filter=MyClassTest.php
+   ```
 
-## Usage
+## Automation
 
 Our goal is to automate testing as much as possible, and so do we with running unit tests. In the Node-based app developing world, [Chokidar](https://www.npmjs.com/package/chokidar) is one of the go-to file watching libraries, most often used for frontend building with *webpack, gulp, workbox,* and such. We will utilize it for FRT. 
 
@@ -168,7 +171,7 @@ Watching "src/**/*.php" ..
 ```bash
 $ git clone git@github.com:tomkyle/frt.git
 $ composer install
-$ npm install
+$ pnpm install
 ```
 
 ### Watch source and run various tests
