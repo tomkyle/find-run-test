@@ -138,14 +138,14 @@ Add the PHP tools as NPM scripts to package.json – see the full example in [e
 
     "phpstan": "./vendor/bin/phpstan --no-progress analyse",
 
-    "phpcs"       : "./vendor/bin/php-cs-fixer fix --verbose --diff --dry-run",
-    "phpcs:apply" : "./vendor/bin/php-cs-fixer fix --verbose --diff",
+    "phpcs": "npm run phpcs:apply -- --dry-run",
+    "phpcs:apply": "./vendor/bin/php-cs-fixer fix --verbose --diff",
 
-    "rector": "./vendor/bin/rector process --dry-run",
+    "rector": "npm run rector:apply -- --dry-run",
     "rector:apply": "./vendor/bin/rector process",
 
-    "phpunit": "./vendor/bin/phpunit",
-    "phpunit:short": "npm run phpunit -- --no-coverage",
+    "phpunit": "./vendor/bin/phpunit --testdox",
+    "phpunit:short": "npm run phpunit -- --no-coverage"
   }
 }
 ```
