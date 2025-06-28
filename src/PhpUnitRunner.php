@@ -161,7 +161,7 @@ class PhpUnitRunner implements ConfigurableTestRunnerInterface
     /**
      * Returns the PhpUnit config file.
      */
-    public function getConfig(): string
+    public function getConfig(): ?string
     {
         return $this->phpunit_config;
     }

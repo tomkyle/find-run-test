@@ -42,12 +42,10 @@ jobs:
           coverage: none
 
       - name: Install Composer dependencies
-        uses: ramsey/composer-install@v2
+        uses: ramsey/composer-install@v3
         with:
           dependency-versions: ${{ matrix.dependency-versions }}
-
       - name: Run PHPUnit
         run: vendor/bin/phpunit tests --no-coverage
-
       - name: Run phpstan
         run: vendor/bin/phpstan analyse

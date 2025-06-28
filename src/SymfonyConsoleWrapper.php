@@ -23,7 +23,8 @@ class SymfonyConsoleWrapper
     {
         if ($this->testRunner instanceof ConfigurableTestRunnerInterface) {
             $config = $input->getOption('config');
-            if ($config) {
+            if (is_string($config) && !empty($config)) {
+                $config = (string) $config;
                 $this->testRunner->setConfig($config);
             }
 
@@ -32,7 +33,12 @@ class SymfonyConsoleWrapper
         }
 
         $file = $input->getArgument('file');
-
+        if (is_string($file) && !empty($file)) {
+            $file = (string) $file;
+        } else {
+            $output->writeln('<error>No file specified.</error>');
+            return 1; // Error code for no file specified
+        }
         return ($this->testRunner)($file);
     }
 }
