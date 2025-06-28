@@ -2,13 +2,17 @@
 
 /**
  * This file is part of tomkyle/find-run-test
+ *
+ * Find and run the PHPUnit test for a single changed PHP class file, most useful when watching the filesystem
+ *
+ * For the full copyright and license information, please view the LICENSE.txt
+ * file that was distributed with this source code.
  */
 
 namespace tomkyle\FindRunTest;
 
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 
 class SymfonyConsoleWrapper
@@ -28,7 +32,7 @@ class SymfonyConsoleWrapper
         }
 
         $file = $input->getArgument('file');
+
         return ($this->testRunner)($file);
     }
-
 }
