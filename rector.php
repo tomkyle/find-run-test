@@ -1,11 +1,5 @@
 <?php
 
-/**
- * tomkyle/render
- *
- * Render CSV data with Twig templates.
- */
-
 use Rector\Config\RectorConfig;
 
 return RectorConfig::configure()
@@ -21,4 +15,6 @@ return RectorConfig::configure()
         naming: true,
         codingStyle: true,
         codeQuality: true,
-    );
+    )
+    ->withAttributesSets()
+    ;
