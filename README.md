@@ -70,7 +70,7 @@ Create a `watch` task inside the project root’s **package.json**, for example:
     "chokidar-cli": "^3.0.0"
   },
   "scripts": {
-    "watch": "chokidar \"src/**/*.php\" -c \"./vendor/bin/frt\"",
+    "watch": "chokidar \"src/**/*.php\" -c \"./vendor/bin/frt {path}\"",
   }
 }
 ```
